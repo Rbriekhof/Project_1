@@ -1,9 +1,9 @@
 // the variables as of yet
 
-var movie = "pulp fiction";
+var movie = "full metal jacket";
 var actor = "will smith";
 var actorID = 8891;
-var movieID = 680;
+var movieID = 600;
 var actorArray = [];
 var movieArray = [];
 var actorConfig;
@@ -34,9 +34,9 @@ function getConfigData() {
             actorConfig = response.images.base_url + response.images.logo_sizes[4];
             movieConfig = response.images.base_url + response.images.poster_sizes[3]
     console.log(actorConfig)
-            getActorImage();
+            // getActorImage();
             // getMoviePoster();
-
+            getCasting();
         });
 
 }
@@ -105,7 +105,25 @@ function getMoviePoster() {
 
 }
 
+function getCasting(){
 
+$.ajax({
+    "async": true,
+    "crossDomain": true,
+    // url: getActorID,
+    // url: getConfig,
+    // url: getMovieID,
+    // url: getCareer,
+    url: getCast,
+    method: "GET",
+    "headers": {},
+    "data": "{}"
+})
+    .then(function (response) {
+        console.log(response)
+
+    })
+};
 
 function displayPicture() {
     concpic = actorConfig + actorArray[0].image;
