@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-image: url("./desktopbackground.png");
+    background-repeat: no-repeat;
+    /* max-width??? */
+    width: 100%;
+    /* overflow: hidden; */
+    background-color:black;
+}
+
+#facePlate1, #facePlate2, #posterPlate{
+    /* visibility:hidden; */
+    margin:0px;
+    border: red solid 1px;
+    padding: 0px;
+    }
+
+h1{
+    text-align:center;
+}
+
+#header{
+    background-color:white;
+    width:100%;
+}
+
+#container{
+    display:block;
+}
+
