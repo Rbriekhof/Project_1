@@ -5,9 +5,9 @@ var actor = "will smith";
 var actorID = 8891;
 var movieID = 680;
 var actorArray = [];
-var actorObj = {};
 var movieArray = [];
-var config;
+var actorConfig;
+var movieConfig;
 var actorImage = ""
 var getConfig = "https://api.themoviedb.org/3/configuration?api_key=20748fb6c1ff9fc0bd764838374d9f26"
 var getMovieID = "https://api.themoviedb.org/3/search/movie?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US&query=" + movie + "&page=1&include_adult=false&append_to_response=credits"
@@ -28,11 +28,14 @@ function getConfigData() {
         "data": "{}"
     })
         .then(function (response) {
+            console.log (response);
             console.log(response.images.base_url)
             console.log(response.images.logo_sizes[4])
-            config = response.images.base_url + response.images.logo_sizes[4];
-            console.log(config);
+            actorConfig = response.images.base_url + response.images.logo_sizes[4];
+            movieConfig = response.images.base_url + response.images.poster_sizes[3]
+    console.log(actorConfig)
             getActorImage();
+            // getMoviePoster();
 
         });
 
@@ -44,7 +47,6 @@ function getActorImage() {
         "async": true,
         "crossDomain": true,
         url: getActorID,
-        // url: getMovieID,
         // url: getCareer,
         // url: getMovieCast,
         method: "GET",
@@ -52,7 +54,7 @@ function getActorImage() {
         "data": "{}"
     })
         .then(function (response) {
-            console.log(response.results[0].id)
+            console.log(response)
             console.log(response.results[0].profile_path)
             for (let i = 0; i < response.results.length; i++) {
                 var object = {}
@@ -71,26 +73,50 @@ function getActorImage() {
 
 
 }
+function getMoviePoster() {
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        url: getMovieID,
+        // url: getCareer,
+        // url: getMovieCast,
+        method: "GET",
+        "headers": {},
+        "data": "{}"
+    })
+        .then(function (response) {
+            console.log(response)
+            console.log(response.results[0].poster_path)
+            for (let i = 0; i < response.results.length; i++) {
+                var object = {}
+                object["name"] = movie;
+                object["id"] = response.results[i].id;
+                object["image"] = response.results[i].poster_path;
+                movieArray.push(object);
+                console.log(movieArray)
+            };
+            displayMovie();
+            // $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${conc}"  alt="Gif"></div>`)
+            // $("#notActor").on("click", function () {
 
+
+        });
+
+
+}
 
 
 
 function displayPicture() {
-    conc = config + actorArray[0].image;
-    $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${conc}"  alt="Gif"></div>`)
+    concpic = actorConfig + actorArray[0].image;
+    $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${concpic}"  alt="Gif"></div>`)
 }
+
+function displayMovie() {
+    concpos = movieConfig + movieArray[0].image;
+    $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${concpos}"  alt="Gif"></div>`)
+}
+
+
+
 getConfigData();
-        // $.ajax({
-        //     "async": true,
-        //     "crossDomain": true,
-        //     url: getCareer,
-        //     method: "GET",
-        //     "headers": {},
-        //     "data": "{}"
-        // })
-
-
-
-
-    // });
-
