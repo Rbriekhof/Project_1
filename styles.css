@@ -4,21 +4,18 @@
 body{
     background-image: url("./desktopbackground.png");
     background-repeat: no-repeat;
-    /* max-width??? */
+    background-attachment: fixed;
+    background-size: cover;
     width: 100%;
-    /* overflow: hidden; */
     background-color:black;
 }
 
-#facePlate1, #facePlate2, #posterPlate{
-    /* visibility:hidden; */
-    margin:0px;
-    border: red solid 1px;
-    padding: 0px;
-    }
 
 h1{
     text-align:center;
+    /* font-family: 'Lobster', cursive; */
+    font-family: 'Orbitron', sans-serif;
+
 }
 
 #header{
@@ -27,6 +24,81 @@ h1{
 }
 
 #container{
-    display:block;
+    margin-bottom:1px;
 }
 
+/* Form */
+
+#submit-answer{
+    background-color:white;
+    width: 100%;
+    border:2px solid darkgray;
+    /* border-radius: 5px; */
+    margin:0px;
+    
+}
+#input-description{
+    width: 100%;
+    min-height:30px;
+    text-align:center;
+    color:white;
+    background-color:red;
+    border:2px solid darkgray;
+    margin:0px;
+}
+#userInput{
+    height:100%; 
+    width:100%;  
+    color:white;
+    text-align:center;
+    margin:1px;
+     
+}
+
+p{
+    padding-top:4px;
+}
+form{
+    position: fixed;
+    width:219px;
+}
+
+
+
+
+/* CSS for Images */
+
+#facePlate1, #facePlate2, #posterPlate{
+    /* visibility:hidden; */
+    position:relative;
+    margin:0 3px;
+    border: red solid 1px;
+    padding: 0px;
+    height: 277.69px;
+    }
+#main{
+    height:auto;
+    max-height: 279px;
+}
+
+
+#firstActor, #secondActor, #posterPic{
+    position: relative;
+    top: -259.5px;
+    left: 25px;
+}
+
+.gifControl{     
+    border-radius: 12px;
+    height:234.5px;
+    width: 175px;
+    padding:0;
+    margin:0;
+    
+    
+}
+
+img{
+    width:auto;
+    /* width: 98.5%; */
+}
