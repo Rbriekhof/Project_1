@@ -58,7 +58,7 @@ var connectedRef = database.ref(".info/connected");
 // When first loaded or when the connections list changes...
 connectionsRef.on("value", function (snap) {
   $("#connected-players").text("Number of Players: " + snap.numChildren()) //+ playersRef.name);
-  $("#player-number").text(snap.numChildren());
+  //$("#player-number").text(snap.numChildren());
 })
 
 // When the client's connection state changes...
@@ -113,7 +113,7 @@ $("#login").on("click", function (event) {
     playerObject.name = playerName;
     $("#player-name").val("");
 
-    $("#player-name-display").text(playerName);
+    $("#player-name-display").text(playerObject.name);
     $("#player-number").text(playerNumber);
 
     database.ref("/players/" + playerNumber).set(playerObject);
