@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" rel="stylesheet" href="./styles.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline|Lobster|Montserrat+Subrayada|Orbitron&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Movie Game</title>
+</head>
+<body>
+    <div id="header"><h1>The Movie Game</h1></div>
+    <div class="row">
+      <div class="col s12">
+        <form id="playerName">    
+        <label for="player-name"><p id="playerNames">Player:</p></label>
+        </form>
+    </div>
+
+    
+</div>
+
+    <div class="row" id="container">
+        <div class="col s3" ></div>
+        <div class="col s2" id="main">
+            <img id="facePlate1"src="./imageFrame.png">  
+            <div id="firstActor"></div>     
+        </div>
+        <div class="col s2"  id="main">
+            <img id="posterPlate" src="./imageFrame.png"> 
+            <div id="posterPic"></div>      
+        </div>
+        <div class="col s2" id="main">
+            <img  id="facePlate2" src="./imageFrame.png"> 
+            <div id="secondActor"></div>      
+        </div>
+        <div class="col s4" ></div>
+    </div>
+    <div class="row">
+        <div class="col s5"></div>
+        
+        <div class="col s2">
+            <form id="form">
+            <label for="userInput"><p id="input-description">Select Actor</p></label>
+            <input type="text" id="userInput" name="text-area">
+            <input type="submit" id="submit-answer">
+            </form>  
+        <div class="col s5"></div> 
+        </div>
+
+    </div>
+    <div class="col s12 m7" id="directions">
+       <img src="./directionsFrame.png">
+    </div>
+    <div>
+        <!-- <button id="directionsButton" onclick="myFunction()">Begin</button> -->
+    </div>
+    <div id="curtainLeft">
+        <img src="./curtainLeft.png">
+    </div>
+    <div id="curtainRight">
+        <img src="./curtainRight.png">
+    </div>
+              
+           
+    <audio id="myAudio">
+        <source src="sound.mp3" type="audio/mp3">
+      </audio>
+                
+    
+  
+
+    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script src="./game.js"></script>
+      <script>
+      function myFunction(){
+          $("#directions").empty()
+          $("#directionsButton").remove()
+          myAudio.play()
+
+
+      }
+      </script>
+</body>
+</html>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
