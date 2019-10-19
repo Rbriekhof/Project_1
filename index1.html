@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script>
 </head>
+
 <body>
 
     This a;sdjfa'iojf'ewi;oa
-    
+    <div id="connected-players"></div>
+    <div class="container text-center">
+        <div class="jumbotron">
+            <h1>Test</h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 pre-connection">
+                Connecting...
+            </div>
+            <div class="col-xs-12 pre-login">
+                <form role="login">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="player-name"
+                            placeholder="Enter your name to start...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" id="login" type="submit">Login</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12 post-login">
+                <h2>Hi,
+                    <span id="player-name-display"></span>! You are player
+                    <span id="player-number"></span>.
+                </h2>
+            </div>
+        </div>
+
+
+
+
+
+        <script src="./projectLogin.js"></script>
 </body>
+
 </html>
