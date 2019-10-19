@@ -6,9 +6,57 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    width: 100%;
+    width: auto;
     background-color:black;
+    overflow-x: hidden;
+    overflow-y:hidden;
 }
+#curtainLeft{
+    position: absolute;
+    top:0;
+    left: -1000px;
+    height:100%;
+    animation-name:left;
+    animation-duration: 1.5s;
+    z-index: 3;
+}
+@keyframes left {
+    from {left: 0px;}
+    to {left: -1000px;}
+  }
+
+#curtainRight{
+    position:absolute;
+    top:0;
+    right:-1000px;
+    animation-name:right;
+    animation-duration: 1.5s;
+    z-index: 3;
+}
+@keyframes right {
+    from {right: 0px;}
+    to {right: -1000px;}
+  }
+#directions{
+    height: 500px;
+    z-index:1;
+    top: 10px;
+    left: 175px;
+    position:absolute;
+    visibility:hidden;
+}
+#directionsButton{
+    z-index:2;
+    position:relative;
+    left: 500px;
+    bottom:-5px;
+    font-size: 2em;
+    padding:10px;
+    border:2px solid darkgray;
+    border-radius: 5px;
+
+}
+
 
 
 h1{
@@ -37,7 +85,7 @@ h1{
     margin:0px;
     
 }
-#input-description{
+#input-description, #playerNames{
     width: 100%;
     min-height:30px;
     text-align:center;
@@ -45,6 +93,7 @@ h1{
     background-color:red;
     border:2px solid darkgray;
     margin:0px;
+
 }
 #userInput{
     height:100%; 
@@ -61,6 +110,23 @@ p{
 form{
     position: fixed;
     width:219px;
+    z-index:-2;
+    margin-left: 4px;
+    margin-top: 5px;
+}
+
+/* #playerNames{
+    top:-20px
+} */
+#playerName{
+    /* top:115px;
+    right:568px; */
+    /* position: fixed;
+    width:219px;
+    z-index:-2;
+    margin-left: 4px;
+    margin-top: 5px; */
+
 }
 
 
@@ -72,9 +138,8 @@ form{
     /* visibility:hidden; */
     position:relative;
     margin:0 3px;
-    border: red solid 1px;
     padding: 0px;
-    height: 277.69px;
+    height: 277.69px; 
     }
 #main{
     height:auto;
@@ -100,5 +165,11 @@ form{
 
 img{
     width:auto;
+    
     /* width: 98.5%; */
 }
+
+@media screen and (max-width: 600px){
+    body{
+        background-image:url("./cellbackground.png")}
+} 
