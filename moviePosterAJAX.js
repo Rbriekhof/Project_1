@@ -1,6 +1,6 @@
 function displayMoviePoster() {
 
-    var movie =
+    var movie = ""
     var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=77f524c2";
 
     // Creating an AJAX call for the specific movie button being clicked
