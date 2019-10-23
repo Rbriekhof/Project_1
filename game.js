@@ -177,7 +177,9 @@ function getFilmography() {
                 checkActor();
             }
             else {
+                $("#userInput").val(" ");
                 M.toast({ html: 'You have A Strike' })
+
                 strikes++
             }
 
@@ -274,6 +276,7 @@ function getCast() {
                 checkMovie();
             }
             else {
+                $("#userInput").val(" ");
                 M.toast({ html: 'You have A Strike' })
                 strikes++
             }
