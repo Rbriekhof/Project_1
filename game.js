@@ -72,6 +72,60 @@ function getFirstImage() {
 
                 console.log(response.results[0].id)
                 console.log(response.results[0].profile_path)
+                for (let i = 0; i < response.results.length; i++) {
+                    var object = {}
+                    object["name"] = actor;
+                    object["id"] = response.results[i].id;
+                    object["image"] = response.results[i].profile_path;
+                    actorArray.push(object);
+                    console.log(actorArray)
+                };
+                actorID = response.results[0].id;
+                getFirstFilmography();
+
+            }
+
+
+        })
+
+}
+
+function getActorImage() {
+    var getActorID = "https://api.themoviedb.org/3/search/person?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US&query=" + actor + "&page=1&include_adult=false"
+
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        url: getActorID,
+        method: "GET",
+        "headers": {},
+        "data": "{}"
+    })
+        .then(function (response) {
+            console.log(response)
+            if (response.results.length > 0) {
+
+
+                console.log(response.results[0].id)
+                console.log(response.results[0].profile_path)
+                for (let i = 0; i < response.results.length; i++) {
+                    var object = {}
+                    object["name"] = actor;
+                    object["id"] = response.results[i].id;
+                    object["image"] = response.results[i].profile_path;
+                    actorArray.push(object);
+                    console.log(actorArray)
+                };
+                actorID = response.results[0].id;
+                checkActor();
+
+            } {
+                playerGuesses--;
+            }
+
+
+                console.log(response.results[0].id)
+                console.log(response.results[0].profile_path)
                 var object = {}
                 object["name"] = actor;
                 object["id"] = response.results[0].id;
@@ -94,12 +148,19 @@ function getFirstFilmography() {
     $.ajax({
         "async": true,
         "crossDomain": true,
+        url: getMovieID,
         url: filmography,
+
         method: "GET",
         "headers": {},
         "data": "{}"
     })
-        .then(function (response) {
+        .then(function (resp) {
+            console.log(resp)
+
+            displayPoster();
+
+      .then(function (response) {
             console.log(response)
             for (i = 0; i < response.cast.length; i++) {
                 filmographyArray[i] = response.cast[i].id
@@ -111,8 +172,12 @@ function getFirstFilmography() {
         })
 
 
+        })
 
 }
+
+function getFirstFilmography() {
+    var filmography = "https://api.themoviedb.org/3/person/" + actorID + "/movie_credits?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US"
 
 function displayFirstPicture() {
     conc = actorConfig + actorArray[turn].image;
@@ -135,6 +200,15 @@ function getActorImage() {
     })
         .then(function (response) {
             console.log(response)
+            // if (actorArray.firebase = null) {
+            displayFirst();
+            // }
+            // else {
+
+            $("#input-description").html("Select Movie")
+            $("#submit-answer").attr("data", "movie")
+        })
+
             if (response.results.length > 0) {
 
 
@@ -151,6 +225,8 @@ function getActorImage() {
             };
 
 
+}
+
 
         })
 
@@ -163,6 +239,10 @@ function getFilmography() {
     $.ajax({
         "async": true,
         "crossDomain": true,
+        // url: getActorID,
+        // url: getMovieID,
+        url: filmography,
+        // url: getMovieCast,
         url: filmography,
         method: "GET",
         "headers": {},
@@ -170,6 +250,7 @@ function getFilmography() {
     })
         .then(function (response) {
             console.log(response)
+            displayPicture();
             for (i = 0; i < response.cast.length; i++) {
                 filmographyArray[i] = response.cast[i].id
             }
@@ -181,6 +262,8 @@ function getFilmography() {
                 strikes++
             }
 
+            // $("#input-description").html("Select Movie")
+            // $("#submit-answer").attr("data", "movie")
         })
 
 
@@ -188,6 +271,27 @@ function getFilmography() {
 }
 
 
+function getCast() {
+    var cast = "https://api.themoviedb.org/3/movie/" + movieID + "/credits?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US"
+
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        url: cast,
+        method: "GET",
+        "headers": {},
+        "data": "{}"
+    })
+        .then(function (response) {
+            console.log(response)
+        })
+
+
+
+}
+function displayFirst() {
+    conc = actorConfig + actorArray[0].image;
+    $("#firstActor").html(`<img class= "gifControl" src="${conc}"  alt="Gif"></div>`)
 function checkActor() {
     if (turn === 0) {
         turn++
@@ -224,7 +328,27 @@ function displayPicture() {
     $("#secondActor").html(`<img class= "gifControl" src="${conc}"  alt="Gif"></div>`)
 
 }
+function displayPicture() {
+    conc = actorConfig + actorArray[0].image;
+    $("#secondActor").html(`<img class= "gifControl" src="${conc}"  alt="Gif"></div>`)
 
+}
+
+function displayPoster() {
+
+
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=77f524c2";
+
+    // Creating an AJAX call for the specific movie button being clicked
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+        var imgURL = response.Poster;
+        $("#posterPic").html(`<img class= "gifControl" src="${imgURL}"  alt="Gif"></div>`);
+
+    });
 /*********************************************handles user guess for movie***************************/
 
 
@@ -279,6 +403,9 @@ function getCast() {
             }
 
 
+function checkActor() {
+    getFilmography()
+
 
         })
 
@@ -299,6 +426,14 @@ function checkMovie() {
 function displayPoster() {
     var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=77f524c2";
 
+    $("#submit-answer").on("click", function (event) {
+        event.preventDefault();
+        var userGuess = $("#userInput").val().trim()
+        console.log(userGuess);
+        actor = userGuess;
+        getFirstImage();
+        console.log(actor)
+        $("#userInput").val("");
     // Creating an AJAX call for the specific movie button being clicked
     $.ajax({
         url: queryURL,
@@ -336,6 +471,11 @@ $("#submit-answer").on("click", function (event) {
         var userGuess = $("#userInput").val().trim().toLowerCase()
         console.log(userGuess);
         actor = userGuess;
+        getActorImage();
+        console.log(actor)
+        $("#userInput").val("");
+        $("#userInput").html(" ");
+        $("submit-answer").attr("data", "movie")
         checkActorGuesses();
 
         if (actor === undefined) {
@@ -389,7 +529,9 @@ function checkMovieGuesses() {
     else {
         getMovieImage();
         console.log(movie)
-
+        $("#userInput").val(" ");
+        $("#input-description").html("Select Next Actor");
+        $("submit-answer").attr("data", "actor")
     }
 }
 
