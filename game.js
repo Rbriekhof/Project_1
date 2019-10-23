@@ -475,7 +475,7 @@ $("#submit-answer").on("click", function (event) {
         console.log(actor)
         $("#userInput").val("");
         $("#userInput").html(" ");
-        $("submit-answer").attr("data", "movie")
+        $("#submit-answer").attr("data", "movie")
         checkActorGuesses();
 
         if (actor === undefined) {
@@ -611,6 +611,10 @@ function resetVariables() {
     actor = "";
     actorID = 0;
     movieID = 0;
+    player1Object.strikes=0;
+    player2Object.strikes=0;
+    player3Object.strikes=0;
+    player4Object.strikes=0;
 }
 
 
