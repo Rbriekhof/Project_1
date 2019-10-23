@@ -1,3 +1,0 @@
-Movie Train is a game for movie buffs!  The object of the game is to link one actor to another by way of a movie they starred in together.  Player 1 will select an actor, the movie he or she starred in, and a co-star from the aforementioned movie.  Player 2 repeats the process, starting with the actor that was selected last, and using a new film and co-star. Previously selected actors cannot be chosen again.  
-
-Each player has 3 chances to complete the link!  If a player cannot complete the link, the player who started the round will have a chance to answer correctly and win the game.  If neither player can complete the link, the game restarts and a new selection can be made. 
