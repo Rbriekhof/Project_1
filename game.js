@@ -1,3 +1,75 @@
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyCknqWYfzGiVGDZuH7Oj05iwO4ODtxcKng",
+    authDomain: "project-1-movie-mania.firebaseapp.com",
+    databaseURL: "https://project-1-movie-mania.firebaseio.com",
+    projectId: "project-1-movie-mania",
+    storageBucket: "project-1-movie-mania.appspot.com",
+    messagingSenderId: "887339168286",
+    appId: "1:887339168286:web:4c797746ccb92fcb15340f",
+    measurementId: "G-VXJ52GSTEQ"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+//make the database defined as the firebase
+var database = firebase.database();
+var playersRef = database.ref("/players")
+var playerName = ""
+var player1LoggedIn = false
+var player2LoggedIn = false
+var player3LoggedIn = false
+var player4LoggedIn = false
+var playerNumber = 0
+var playerObject
+var player1Object = {
+    name: "",
+    choice: "",
+    strikes: 0
+}
+var player2Object = {
+    name: "",
+    choice: "",
+    strikes: 0
+}
+var player3Object = {
+    name: "",
+    choice: "",
+    strikes: 0
+}
+var player4Object = {
+    name: "",
+    choice: "",
+    strikes: 0
+}
+var resetId;
+
+// connectionsRef references a specific location in our database.
+// All of our connections will be stored in this directory.
+var connectionsRef = database.ref("/connections");
+
+// '.info/connected' is a special location provided by Firebase that is updated
+// every time the client's connection state changes.
+var connectedRef = database.ref(".info/connected");
+
+// When first loaded or when the connections list changes...
+connectionsRef.on("value", function (snap) {
+})
+
+// When the client's connection state changes...
+connectedRef.on("value", function (snap) {
+
+    // If they are connected..
+    if (snap.val()) {
+
+        // Add user to the connections list.
+        var con = connectionsRef.push(true);
+        // Remove user from the connection list when they disconnect.
+        con.onDisconnect().remove();
+    }
+});
+
 var userGuess;
 var movie = "";
 var actor = "";
@@ -16,6 +88,7 @@ var Cast = "https://api.themoviedb.org/3/movie/" + movieID + "/credits?api_key=2
 var confirmImage = false;
 // var userGuess=$("#userInput").val().trim().toUpperCase()
 var playerGuesses = 3;
+
 
 
 // ajax call for base URL for API 
@@ -59,7 +132,7 @@ function getActorImage() {
         .then(function (response) {
             console.log(response)
             if (response.results.length > 0) {
-                
+
 
                 console.log(response.results[0].id)
                 console.log(response.results[0].profile_path)
@@ -76,6 +149,13 @@ function getActorImage() {
                
             } {
                 playerGuesses--;
+
+                displayPicture();
+                // $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${conc}"  alt="Gif"></div>`)
+                // $("#notActor").on("click", function () {
+
+            } {
+                playerGuess--;
             }
 
 
@@ -132,6 +212,10 @@ function getMovieImage() {
     //     //alert error
     //     alert("check network")
     // });
+        .catch(function (err) {
+            //alert error
+            alert("check network")
+        });
 
 
 }
@@ -237,6 +321,16 @@ function displayPoster() {
     conc = actorConfig + movieArray[0].image;
     $("#posterPic").html(`<img class= "gifControl" src="${conc}"  alt="Gif"></div>`)
 }
+}
+getConfigData();
+// $.ajax({
+//     "async": true,
+//     "crossDomain": true,
+//     url: getCareer,
+//     method: "GET",
+//     "headers": {},
+//     "data": "{}"
+// })
 
 
 // $.ajax({
@@ -283,6 +377,9 @@ function firstChoice() {
 
 
 
+// });
+
+
 function beginGame() {
     // resets all global variables to default values
     resetVariables();
@@ -292,6 +389,8 @@ function beginGame() {
     // Round(); 
     $("#input-description").html("Select First Actor")
     firstChoice()
+
+
 }
 
 
@@ -342,6 +441,41 @@ $("#submit-answer").on("click", function (event) {
 
 // roundOne();
 // })
+
+    var userGuess = $("#userInput").val().trim()
+    //     var userGuess=$("#userInput").val().trim().toUpperCase()
+    console.log(userGuess);
+    actor = userGuess;
+    getActorImage();
+    console.log(actor)
+
+
+    if (actor === undefined) {
+        return 'undefined value!'
+
+    }
+    else {
+
+    }
+
+
+    $("#submit-answer").on("click", function () {
+        event.preventDefault();
+        var userGuess = $("#userInput").val().trim().toUpperCase()
+        console.log(userGuess);
+        $("#userInput").val("")
+
+
+        if (userGuess.includes("YEP")) {
+            // replace YEP w/ actor 
+            $("#input-description").html("Select Movie")
+        }
+
+    })
+
+
+    // roundOne();
+})
 
 
 // function roundOne(){
