@@ -75,7 +75,6 @@ connectedRef.on("value", function (snap) {
 });
 $("#login").on("click", function (event) {
   event.preventDefault();
-  $(".pre-connection").hide();
   $("#player-name").hide();
   $("#login").hide();
   $(".post-login").show()
