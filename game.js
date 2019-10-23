@@ -42,7 +42,7 @@ function getConfigData() {
 }
 
 
-function getActorImage() {
+function getFirstImage() {
     var getActorID = "https://api.themoviedb.org/3/search/person?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US&query=" + actor + "&page=1&include_adult=false"
 
     $.ajax({
@@ -59,7 +59,43 @@ function getActorImage() {
         .then(function (response) {
             console.log(response)
             if (response.results.length > 0) {
-                
+
+
+                console.log(response.results[0].id)
+                console.log(response.results[0].profile_path)
+                for (let i = 0; i < response.results.length; i++) {
+                    var object = {}
+                    object["name"] = actor;
+                    object["id"] = response.results[i].id;
+                    object["image"] = response.results[i].profile_path;
+                    actorArray.push(object);
+                    console.log(actorArray)
+                };
+                actorID = response.results[0].id;
+                getFirstFilmography();
+
+            }
+
+
+        })
+
+}
+
+function getActorImage() {
+    var getActorID = "https://api.themoviedb.org/3/search/person?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US&query=" + actor + "&page=1&include_adult=false"
+
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        url: getActorID,
+        method: "GET",
+        "headers": {},
+        "data": "{}"
+    })
+        .then(function (response) {
+            console.log(response)
+            if (response.results.length > 0) {
+
 
                 console.log(response.results[0].id)
                 console.log(response.results[0].profile_path)
@@ -73,17 +109,13 @@ function getActorImage() {
                 };
                 actorID = response.results[0].id;
                 checkActor();
-               
+
             } {
                 playerGuesses--;
             }
 
 
         })
-    // .catch(function (err) {
-    //     //alert error
-    //     alert("check network")
-    // });
 
 
 }
@@ -95,46 +127,49 @@ function getMovieImage() {
     $.ajax({
         "async": true,
         "crossDomain": true,
-        // url: getActorID,
         url: getMovieID,
-        // url: getCareer,
-        // url: getMovieCast,
         method: "GET",
         "headers": {},
         "data": "{}"
     })
         .then(function (resp) {
             console.log(resp)
-            // if (response.results.length > 0) {
 
-            //     console.log(response.results[0].id)
-            //     console.log(response.results[0].profile_path)
-            //     for (let i = 0; i < response.results.length; i++) {
-            //         var object = {}
-            //         object["name"] = actor;
-            //         object["id"] = response.results[i].id;
-            //         object["image"] = response.results[i].profile_path;
-            //         movieArray.push(object);
-            //         console.log(actorArray)
-            //     };
-                displayPoster();
-                // $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${conc}"  alt="Gif"></div>`)
-                // $("#notActor").on("click", function () {
+            displayPoster();
 
-            })
-            // else {
-            //     playerGuess--;
+        })
+
+}
+
+function getFirstFilmography() {
+    var filmography = "https://api.themoviedb.org/3/person/" + actorID + "/movie_credits?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US"
+
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        // url: getActorID,
+        // url: getMovieID,
+        url: filmography,
+        // url: getMovieCast,
+        method: "GET",
+        "headers": {},
+        "data": "{}"
+    })
+        .then(function (response) {
+            console.log(response)
+            // if (actorArray.firebase = null) {
+            displayFirst();
             // }
+            // else {
 
+            $("#input-description").html("Select Movie")
+            $("#submit-answer").attr("data", "movie")
+        })
 
-       
-    // .catch(function (err) {
-    //     //alert error
-    //     alert("check network")
-    // });
 
 
 }
+
 
 function getFilmography() {
     var filmography = "https://api.themoviedb.org/3/person/" + actorID + "/movie_credits?api_key=20748fb6c1ff9fc0bd764838374d9f26&language=en-US"
@@ -152,38 +187,15 @@ function getFilmography() {
     })
         .then(function (response) {
             console.log(response)
-            // if (actorArray.firebase = null) {
             displayPicture();
-            // }
-            // else {
 
-            $("#input-description").html("Select Movie")
-            $("#submit-answer").attr("data", "movie")
+            // $("#input-description").html("Select Movie")
+            // $("#submit-answer").attr("data", "movie")
         })
-            // if (response.results.length > 0) {
 
-            //     console.log(response)
-            //     console.log(response.results[0].profile_path)
-            //     for (let i = 0; i < response.results.length; i++) {
-            //         var object = {}
-            //         object["name"] = actor;
-            //         object["id"] = response.results[i].id;
-            //         object["image"] = response.results[i].profile_path;
-            //         movieArray.push(object);
-            //         console.log(actorArray)
-            //     };
-            //     displayPoster();
-            // $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${conc}"  alt="Gif"></div>`)
-            // $("#notActor").on("click", function () {
 
-        
-    }
 
-        // .catch(function (err) {
-        //     //alert error
-        //     alert("check network")
-        // });
-
+}
 
 
 function getCast() {
@@ -192,9 +204,6 @@ function getCast() {
     $.ajax({
         "async": true,
         "crossDomain": true,
-        // url: getActorID,
-        // url: getMovieID,
-        // url: filmography,
         url: cast,
         method: "GET",
         "headers": {},
@@ -202,56 +211,45 @@ function getCast() {
     })
         .then(function (response) {
             console.log(response)
-            // if (response.results.length > 0) {
-
-            //     console.log(response)
-            //     console.log(response.results[0].profile_path)
-            //     for (let i = 0; i < response.results.length; i++) {
-            //         var object = {}
-            //         object["name"] = actor;
-            //         object["id"] = response.results[i].id;
-            //         object["image"] = response.results[i].profile_path;
-            //         movieArray.push(object);
-            //         console.log(actorArray)
-            //     };
-            //     displayPoster();
-            // $("#firstActor").html(`<div class="card bg-dark text-white giphs"><img class="card-img" id= "gifControl" src="${conc}"  alt="Gif"></div>`)
-            // $("#notActor").on("click", function () {
-
         })
 
-    // .catch(function (err) {
-    //     //alert error
-    //     alert("check network")
-    // });
 
 
 }
-function displayPicture() {
+function displayFirst() {
     conc = actorConfig + actorArray[0].image;
     $("#firstActor").html(`<img class= "gifControl" src="${conc}"  alt="Gif"></div>`)
 
 }
+function displayPicture() {
+    conc = actorConfig + actorArray[0].image;
+    $("#secondActor").html(`<img class= "gifControl" src="${conc}"  alt="Gif"></div>`)
+
+}
 
 function displayPoster() {
-    conc = actorConfig + movieArray[0].image;
-    $("#posterPic").html(`<img class= "gifControl" src="${conc}"  alt="Gif"></div>`)
+
+
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=77f524c2";
+
+    // Creating an AJAX call for the specific movie button being clicked
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+        var imgURL = response.Poster;
+        $("#posterPic").html(`<img class= "gifControl" src="${imgURL}"  alt="Gif"></div>`);
+
+    });
+
 }
 
 
-// $.ajax({
-//     "async": true,
-//     "crossDomain": true,
-//     url: getCareer,
-//     method: "GET",
-//     "headers": {},
-//     "data": "{}"
-// })
 
 
 
 
-// });
 function checkActor() {
     getFilmography()
 
@@ -269,7 +267,7 @@ function firstChoice() {
         var userGuess = $("#userInput").val().trim()
         console.log(userGuess);
         actor = userGuess;
-        getActorImage();
+        getFirstImage();
         console.log(actor)
         $("#userInput").val("");
 
@@ -306,7 +304,7 @@ $("#submit-answer").on("click", function (event) {
         console.log(actor)
         $("#userInput").val("");
         $("#userInput").html(" ");
-        $("submit-answer").attr("data","movie")
+        $("submit-answer").attr("data", "movie")
 
         if (actor === undefined) {
             return 'undefined value!'
@@ -319,7 +317,9 @@ $("#submit-answer").on("click", function (event) {
         movie = userGuess;
         getMovieImage();
         console.log(movie)
-
+        $("#userInput").val(" ");
+        $("#input-description").html("Select Next Actor");
+        $("submit-answer").attr("data", "actor")
     }
 });
 
