@@ -9,3 +9,6 @@ The object of The Movie Game is to link one actor to another by way of a movie t
 If a player cannot complete the link in 3 attempts they are eliminated from the game and the selection process begins again with the next player.  The game continues until one player is left; he or she is the winner.  
 
 
+Live Demo:
+https://rbriekhof.github.io/Project_1/
+
