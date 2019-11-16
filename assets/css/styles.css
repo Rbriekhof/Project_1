@@ -11,8 +11,8 @@ body{
     width: auto;
     height: 100%;
     background-color:black;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    /*overflow-x: hidden;
+    overflow-y: hidden;*/
 }
 
 
@@ -299,6 +299,7 @@ body{
     position:relative;
 }
 
+/*
 #header{
     transform:rotate(90deg);
     top:120px;
@@ -306,6 +307,7 @@ body{
     max-width:500px;
     position:fixed;
 }
+*/
 
 #container{
     width: 160px;
@@ -334,4 +336,12 @@ form{
 #player{
     top:470px;
 } 
+}
+
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: transparent;
 }
