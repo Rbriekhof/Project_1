@@ -62,7 +62,7 @@ p{
     padding-top:4px;
 }
 form{
-    position: fixed;
+    /*position: fixed;*/
     width:219px;
     z-index:-2;
     margin-left: 4px;
