@@ -1,4 +1,4 @@
-# Project_1- The Movie Game
+# The Movie Game
 
 
 #  How to Play:
